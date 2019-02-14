@@ -4,7 +4,7 @@
  */
 package com.example.demo.controller;
 
-import java.util.logging.Filter;
+import com.example.demo.filter.MyFilter;
 import org.apache.catalina.filters.RemoteIpFilter;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
@@ -22,10 +22,8 @@ public class WebConfiguration {
     public RemoteIpFilter remoteIpFilter() {
         return new RemoteIpFilter();
     }
-
     @Bean
     public FilterRegistrationBean testFilterRegistration() {
-
         FilterRegistrationBean registration = new FilterRegistrationBean();
         registration.setFilter(new MyFilter());
         registration.addUrlPatterns("/*");
@@ -34,7 +32,5 @@ public class WebConfiguration {
         registration.setOrder(1);
         return registration;
     }
-
-
 }
 
