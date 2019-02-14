@@ -9,9 +9,12 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+import com.example.demo.util.ExampleProperties;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.mock.web.MockHttpServletRequest;
@@ -30,6 +33,8 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 @SpringBootTest
 public class HelloTest {
     private MockMvc mvc;
+    @Autowired
+    private ExampleProperties exampleProperties;
 
     @Before
     public void setUp() throws Exception {
@@ -51,6 +56,13 @@ public class HelloTest {
                 .andExpect(status().isOk()).andDo(print())
                 .andReturn().getResponse().getContentAsString();
         System.out.println("User = " + response);
+    }
+
+    @Test
+    public void getProperties () throws Exception {
+        System.out.println(" Title = " + exampleProperties.getTitle());
+        System.out.println(" Description = " + exampleProperties.getDescription());
+        Assert.assertEquals(exampleProperties.getDescription(), "SpringBoot学习");
     }
 
 }
