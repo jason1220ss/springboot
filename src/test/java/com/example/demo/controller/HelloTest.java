@@ -9,6 +9,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+import com.example.demo.domain.User;
+import com.example.demo.domain.UserRepository;
 import com.example.demo.util.ExampleProperties;
 import org.junit.Assert;
 import org.junit.Before;
@@ -35,6 +37,8 @@ public class HelloTest {
     private MockMvc mvc;
     @Autowired
     private ExampleProperties exampleProperties;
+    @Autowired
+    private UserRepository userRepository;
 
     @Before
     public void setUp() throws Exception {
@@ -64,6 +68,19 @@ public class HelloTest {
         System.out.println(" Description = " + exampleProperties.getDescription());
         Assert.assertEquals(exampleProperties.getDescription(), "SpringBoot学习");
     }
+
+    @Test
+    public void testBaseQuery() throws Exception {
+        User user = new User();
+        userRepository.findAll();
+//        userRepository.findOne(1l);
+        userRepository.save(user);
+        userRepository.delete(user);
+        userRepository.count();
+//        userRepository.exists(1l);
+        // ...
+    }
+
 
 }
 
