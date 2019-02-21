@@ -28,8 +28,8 @@ public class HelloWorldController {
     @RequestMapping("/getUser")
     public User getUser() {
         User user = new User();
-        user.setuId("1");
-        user.setName("jason");
+        user.setId(1L);
+        user.setUserName("jason");
         return user;
     }
 }
