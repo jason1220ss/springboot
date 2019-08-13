@@ -27,8 +27,8 @@ public class TestRedis {
     @Before
     public void setUp() throws Exception {
         mvc = MockMvcBuilders.standaloneSetup(new HelloWorldController()).build();
-        JedisPool jedisPool = new JedisPool(new GenericObjectPoolConfig(), "123.207.89.45", 6378, 3000,
-                "redis1234@!");
+        JedisPool jedisPool = new JedisPool(new GenericObjectPoolConfig(), "106.52.95.206", 6379, 3000,
+                "yzy0802redis");
         jedis = jedisPool.getResource();
     }
 
